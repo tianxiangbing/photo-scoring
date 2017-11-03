@@ -7,7 +7,6 @@ body {
   font-family: sans-serif;
   background-color:rgb(254, 254, 254,0.5); 
   font-family:"STHupo", "Microsoft YaHei",Helvetica;
-  background-size:cover;
   height:100%;
 }
 .bg{
@@ -15,8 +14,15 @@ body {
   height: 100%;
   width:100%;
   position: absolute;
+  top:0;
+  left:0;
   z-index: -1;
   background:url(bg.jpg) no-repeat center center;
+  background-size:cover;
+}
+h1{
+  text-align: center;
+  color:#666;
 }
 .content{
   position: absolute;

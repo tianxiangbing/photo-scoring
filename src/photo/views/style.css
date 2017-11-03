@@ -6,7 +6,9 @@
     margin: 20px auto;
     overflow: hidden;
     background-color:rgba(23, 5, 5, 0.50);
-    color:#fff;
+    color:#efefef;
+    font-weight: normal;
+    font-size: 13px;
 }
 
 .avatar img {

@@ -5,6 +5,7 @@ import { view as Scoring } from './scoring/';
 function PhotoScoring() {
     return (
         <div >
+        <h1>人要有自信</h1>
             <div className="bg" />
             <div className="content">
                 <Photo />
