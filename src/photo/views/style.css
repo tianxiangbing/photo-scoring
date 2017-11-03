@@ -1,0 +1,24 @@
+.avatar {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    margin: 20px auto;
+    overflow: hidden;
+    background-color:rgba(23, 5, 5, 0.50);
+    color:#fff;
+}
+
+.avatar img {
+    height: 100px;
+    width: 100px;
+}
+
+.hidden {
+    display: none;
+}
+
+.imgContent {
+    text-align: center;
+    width:100%;
+}

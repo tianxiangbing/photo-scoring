@@ -1,0 +1,21 @@
+.url{
+    width:100px;
+    height:100px;
+    position: fixed;
+    left: 10px;
+    bottom:10px;
+}
+.desc{
+    text-align: center;
+    font-size:16px;
+    color:#666;
+}
+.scoreContent{
+    width:100%;
+    text-align: center;
+}
+.score{
+    font-size: 24px;
+    color:rgb(157, 170, 3)!important;
+    font-family: "Verdana";
+}

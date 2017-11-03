@@ -1,0 +1,1 @@
+export const SHARE_SCORING = 'SCORING/SHARE';
