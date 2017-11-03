@@ -2,7 +2,8 @@
     width:100px;
     height:100px;
     position: fixed;
-    left: 10px;
+    left: 50%;
+    transform: translate(-50%,0%);
     bottom:10px;
 }
 .desc{
@@ -18,4 +19,13 @@
     font-size: 24px;
     color:rgb(157, 170, 3)!important;
     font-family: "Verdana";
+}
+.tips{
+    position: fixed;
+    opacity: .7;
+    background-color: #cac5c5;
+    border-radius: 20px;
+    padding:6px;
+    left:50%;
+    transform: translateX(-50%);
 }

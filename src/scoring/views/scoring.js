@@ -10,11 +10,12 @@ const Scoring = ({ score, onShare }) => {
     return (
         <div className="scoreContent">
             {score ?
-                <p className="desc">
+                <div className="desc">
                     <div>你的容颜在全球所有人和动物中排名</div>
                     <div className="score">{score} 名</div>
                     <div>{m}!</div>
-                </p>
+                    <div className="tips">长按保存图片分享</div>
+                </div>
                 : undefined
             }
             <div>

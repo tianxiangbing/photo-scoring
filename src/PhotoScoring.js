@@ -1,33 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { view as Photo } from './photo/';
 import { view as Scoring } from './scoring/';
 import html2canvas from 'html2canvas';
+import { connect } from 'react-redux';
 
-function PhotoScoring() {
-    return (
-        <div onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-            <h1>人要有自信</h1>
-            <div className="bg" />
-            <div className="content">
-                <Photo />
-                <Scoring />
-            </div>
-        </div>
-    )
-}
-let timer = undefined;
-const onTouchStart = (e) => {
-    timer = setTimeout(() => {
-        //长按
-        html2canvas(document.body, {
-            onrendered: function (canvas) {
-                document.body.appendChild(canvas);
+class PhotoScoring extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { img: null };
+        this.onClick = this.onClick.bind(this);
+    }
+    onClick() {
+        let _this = this;
+        html2canvas(document.getElementById('root'), {
+            onrendered: (canvas) => {
+                let url = canvas.toDataURL();
+                _this.setState({ img: url });
             }
         });
-    }, 1000)
+    }
+    render() {
+        return (
+            <div>
+                {this.state.img ? <img className="downImg" src={this.state.img} alt="长按下载" /> : undefined}
+                <div>
+                    <h1>人要有自信</h1>
+                    <div className="bg" />
+                    <div className="content">
+                        <Photo />
+                        <div onTouchStart={this.onClick} >
+                            {this.state.img ? undefined : <Scoring />}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
-const onTouchEnd = (e) => {
-    timer && clearTimeout(timer);
-}
-
-export default PhotoScoring
+export default PhotoScoring;
