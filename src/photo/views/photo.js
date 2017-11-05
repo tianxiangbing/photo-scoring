@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { uploadPhoto } from '../actions.js';
+import { actions } from '../../scoring';
 import Img from './img.js';
 import './style.css';
 
@@ -19,7 +20,10 @@ class Photo extends Component {
         reader.onload = (e) => {
             this.props.upload(e.target.result)
         }
-        reader.readAsDataURL(e.target.files[0])
+        if (e.target.files.length) {
+            reader.readAsDataURL(e.target.files[0])
+            this.props.clearShot();
+        }
     }
     onPick() {
         this.input.click();
@@ -28,7 +32,7 @@ class Photo extends Component {
         return (
             <div className="imgContent">
                 <input type="file" className="hidden" accept="image/*" ref={this.refInput} onChange={this.upload} />
-                <Img src={this.props.img} onPick={this.onPick}/>
+                <Img src={this.props.img} onPick={this.onPick} />
             </div>
         )
     }
@@ -36,7 +40,8 @@ class Photo extends Component {
 
 const mapDispatchToProps = (dispatch, ownerProps) => {
     return {
-        upload: (img) => dispatch(uploadPhoto(img))
+        upload: (img) => dispatch(uploadPhoto(img)),
+        clearShot: () => dispatch(actions.screenshot())
     }
 }
 

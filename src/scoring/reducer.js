@@ -1,9 +1,9 @@
-import { SHARE_SCORING } from './actionType.js';
+import { SCREENSHOT } from './actionType.js';
 
-export default (state='', action) => {
+export default (state={score:0,clearShot:false}, action) => {
     switch (action.type) {
-        case SHARE_SCORING: {
-            return null;
+        case SCREENSHOT:{
+            return {...state,clearShot:action.clearShot};
         }
         default: {
             return state;

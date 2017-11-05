@@ -8,7 +8,7 @@ const win = window;
 win.Perf = Perf
 const reducer = combineReducers({
     img:photoReducer,
-    score:ScoringReducer
+    scoreborad:ScoringReducer
 });
 
 

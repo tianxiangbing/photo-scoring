@@ -1,5 +1,6 @@
-import {SHARE_SCORING} from './actionType.js';
+import {SCREENSHOT} from './actionType.js';
 
-export const share = ()=>({
-    type:SHARE_SCORING
+export const screenshot=()=>({
+    type:SCREENSHOT,
+    clearShot:true
 })

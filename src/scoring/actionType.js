@@ -1,1 +1,1 @@
-export const SHARE_SCORING = 'SCORING/SHARE';
+export const SCREENSHOT = 'SCORING/SHOT';
