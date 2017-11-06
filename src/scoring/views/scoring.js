@@ -13,21 +13,29 @@ class Scoring extends Component {
     }
     onClick() {
         let _this = this;
-        setTimeout(function(){
+        setTimeout(function () {
+            let canvas = document.createElement('canvas');
+            let ctx = canvas.getContext('2d');
+            canvas.width = document.body.clientWidth * 3;
+            canvas.height = document.body.clientHeight * 3;
+            ctx.scale(3, 3);
             html2canvas(document.getElementById('root'), {
                 onrendered: (canvas) => {
-                    let url = canvas.toDataURL();
+                    canvas.globalCompositeOperation = 'source-atop';
+                    let url = canvas.toDataURL("image/png");
                     _this.setState({ img: url });
-                }
+                },
+                background: "rgba(254, 254, 254, 0.50)",
+                canvas: canvas
             });
-        },1000)
+        }, 1000)
     }
-    componentWillReceiveProps(nextprops){
-        if(nextprops && nextprops.clearShot ===true && this.state.img){
-            this.setState({img:null})
+    componentWillReceiveProps(nextprops) {
+        if (nextprops && nextprops.clearShot === true && this.state.img) {
+            this.setState({ img: null })
         }
     }
-    componentDidUpdate(nextprops){
+    componentDidUpdate(nextprops) {
         !this.state.img && this.onClick();
     }
     render() {
@@ -35,14 +43,14 @@ class Scoring extends Component {
         let { score } = this.props;
         return (
             <div>
-                {this.state.img ? <img className="downImg" src={this.state.img} alt="长按下载" />: undefined}
+                {this.state.img ? <img className="downImg" src={this.state.img} alt="长按下载" /> : undefined}
                 <div className="scoreContent">
                     {score ?
                         <div className="desc">
                             <div>你的容颜在全球所有人和动物中排名</div>
                             <div className="score">{score} 名</div>
                             <div>{m}!</div>
-                            <div className="tips">长按保存图片分享</div>
+                            <div className="tips">长按此处保存图片</div>
                         </div>
                         : undefined
                     }
@@ -67,15 +75,15 @@ const mapStateToProps = (state) => {
         let sublen = parseInt(md5value.substr(0, 1), 16);
         sublen = Math.max(1, Math.min(8, sublen));
         md5value = md5value.substr(0, sublen);
-        score = parseInt(md5value, 16) +1;
+        score = parseInt(md5value, 16) + 1;
         return {
             score: toThousands(score),
-            clearShot:state.scoreborad.clearShot
+            clearShot: state.scoreborad.clearShot
         }
-    } else { 
+    } else {
         return {
             score: '',
-            clearShot:state.scoreborad.clearShot
+            clearShot: state.scoreborad.clearShot
         }
     }
 }

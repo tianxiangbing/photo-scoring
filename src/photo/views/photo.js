@@ -100,11 +100,11 @@ function selectFileImage(fileObj,callback) {
                 var expectWidth = this.naturalWidth;
                 var expectHeight = this.naturalHeight;
 
-                if (this.naturalWidth > this.naturalHeight && this.naturalWidth > 100) {
-                    expectWidth = 100;
+                if (this.naturalWidth > this.naturalHeight && this.naturalWidth > 300) {
+                    expectWidth = 300;
                     expectHeight = expectWidth * this.naturalHeight / this.naturalWidth;
-                } else if (this.naturalHeight > this.naturalWidth && this.naturalHeight > 100) {
-                    expectHeight = 100;
+                } else if (this.naturalHeight > this.naturalWidth && this.naturalHeight > 300) {
+                    expectHeight = 300;
                     expectWidth = expectHeight * this.naturalWidth / this.naturalHeight;
                 }
                 var canvas = document.createElement("canvas");
