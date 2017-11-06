@@ -54,7 +54,7 @@ class Scoring extends Component {
         )
     }
 }
-const msg = ['或许靠能力也是一种选择，不要放弃你', '你以为躲起来就找不到你了吗？没有用的你是那样拉风的人', '那么丑你还是别出来见人了', '妹子不错哟想约的快扫下方二维码', '把你丢在猪群里 都找不到你了', '人群中一眼就看出了你是头猪', '地球很危险快回火星'];
+const msg = ['或许靠能力也是一种选择，不要放弃你', '你以为躲起来就找不到你了吗？没有用的你是那样拉风的人', '那么丑你还是别出来见人了', '妹子不错哟想约的快扫下方二维码', '把你丢在猪群里 都找不到你了', '本来可以靠实力，非要靠颜值', '地球很危险快回火星'];
 const getMsg = () => {
     return msg[Math.floor(Math.random() * msg.length)];
 }
@@ -67,7 +67,7 @@ const mapStateToProps = (state) => {
         let sublen = parseInt(md5value.substr(0, 1), 16);
         sublen = Math.max(1, Math.min(8, sublen));
         md5value = md5value.substr(0, sublen);
-        score = parseInt(md5value, 16);
+        score = parseInt(md5value, 16) +1;
         return {
             score: toThousands(score),
             clearShot:state.scoreborad.clearShot
