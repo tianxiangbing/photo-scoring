@@ -34,4 +34,5 @@
     padding:6px;
     left:50%;
     transform: translateX(-50%);
+    white-space: nowrap;
 }
