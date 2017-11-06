@@ -23,7 +23,7 @@ class Scoring extends Component {
                 onrendered: (canvas) => {
                     canvas.globalCompositeOperation = 'source-atop';
                     let url = canvas.toDataURL("image/png");
-                    _this.setState({ img: url });
+                    // _this.setState({ img: url });
                 },
                 background: "rgba(254, 254, 254, 0.50)",
                 canvas: canvas
@@ -48,7 +48,7 @@ class Scoring extends Component {
                     {score ?
                         <div className="desc">
                             <div>你的容颜在全球所有人和动物中排名</div>
-                            <div className="score">{score} 名</div>
+                            <div className="score">{score}名</div>
                             <div>{m}!</div>
                             <div className="tips">长按此处保存图片</div>
                         </div>

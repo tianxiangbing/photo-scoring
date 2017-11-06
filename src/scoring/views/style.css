@@ -9,21 +9,27 @@
 .desc{
     text-align: center;
     font-size:16px;
-    color:rgb(157, 170, 3);
+    color:#666;
+    font-weight: normal;
+    font-family:"Microsoft YaHei";
+    font-weight: bold;
 }
 .scoreContent{
     width:100%;
     text-align: center;
 }
 .score{
-    font-size: 24px;
-    color:rgb(157, 170, 3)!important;
+    font-size: 25px;
+    color:#333!important;
     font-family: "Verdana";
+    font-weight: bold;
 }
 .tips{
     position: fixed;
     opacity: .7;
     background-color: #cac5c5;
+    color:#999;
+    margin-top:20px;
     border-radius: 20px;
     padding:6px;
     left:50%;
