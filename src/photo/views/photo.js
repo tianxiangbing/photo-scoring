@@ -16,9 +16,21 @@ class Photo extends Component {
         this.input = node;
     }
     upload(e) {
-        var reader = new FileReader();
+        let reader = new FileReader();
+        let _this = this;
         reader.onload = (e) => {
-            this.props.upload(e.target.result)
+            // this.props.upload(e.target.result)
+            let img= new Image();
+            img.onload = function(){
+                let canvas = document.createElement("canvas");  
+                let ctx = canvas.getContext("2d");  
+                canvas.width = 200;  
+                canvas.height = 200;  
+                ctx.drawImage(this, 0, 0, 200, 200); 
+                let base64 = canvas.toDataURL("image/png");
+                _this.props.upload(base64);
+            }
+            img.src = e.target.result;
         }
         if (e.target.files.length) {
             reader.readAsDataURL(e.target.files[0])

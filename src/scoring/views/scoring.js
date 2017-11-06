@@ -13,12 +13,14 @@ class Scoring extends Component {
     }
     onClick() {
         let _this = this;
-        html2canvas(document.getElementById('root'), {
-            onrendered: (canvas) => {
-                let url = canvas.toDataURL();
-                _this.setState({ img: url });
-            }
-        });
+        setTimeout(function(){
+            html2canvas(document.getElementById('root'), {
+                onrendered: (canvas) => {
+                    let url = canvas.toDataURL();
+                    _this.setState({ img: url });
+                }
+            });
+        },1000)
     }
     componentWillReceiveProps(nextprops){
         if(nextprops && nextprops.clearShot ===true && this.state.img){
