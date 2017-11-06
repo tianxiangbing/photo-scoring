@@ -16,14 +16,14 @@ class Scoring extends Component {
         setTimeout(function () {
             let canvas = document.createElement('canvas');
             let ctx = canvas.getContext('2d');
-            canvas.width = document.body.clientWidth * 3;
-            canvas.height = document.body.clientHeight * 3;
-            ctx.scale(3, 3);
+            canvas.width = document.body.clientWidth * 2;
+            canvas.height = document.body.clientHeight * 2;
+            ctx.scale(2, 2);
             html2canvas(document.getElementById('root'), {
                 onrendered: (canvas) => {
                     canvas.globalCompositeOperation = 'source-atop';
                     let url = canvas.toDataURL("image/png");
-                    // _this.setState({ img: url });
+                    _this.setState({ img: url });
                 },
                 background: "rgba(254, 254, 254, 0.50)",
                 canvas: canvas
@@ -45,12 +45,12 @@ class Scoring extends Component {
             <div>
                 {this.state.img ? <img className="downImg" src={this.state.img} alt="长按下载" /> : undefined}
                 <div className="scoreContent">
-                    {score ?
+                    {score&& !this.state.img ?
                         <div className="desc">
                             <div>你的容颜在全球所有人和动物中排名</div>
                             <div className="score">{score}名</div>
                             <div>{m}!</div>
-                            <div className="tips">长按此处保存图片</div>
+                            <div className="tips">长按保存图片或截图分享</div>
                         </div>
                         : undefined
                     }
@@ -62,7 +62,7 @@ class Scoring extends Component {
         )
     }
 }
-const msg = ['或许靠能力也是一种选择，不要放弃你', '你以为躲起来就找不到你了吗？没有用的你是那样拉风的人', '那么丑你还是别出来见人了', '妹子不错哟想约的快扫下方二维码', '把你丢在猪群里 都找不到你了', '本来可以靠实力，非要靠颜值', '地球很危险快回火星'];
+const msg = ['或许靠能力也是一种选择，不要放弃你', '你以为躲起来就找不到你了吗？没有用的你是那样拉风的人', '那么丑你还是别出来见人了', '高颜值才是硬道理', '把你丢在猪群里 都找不到你了', '本来可以靠实力，非要靠颜值', '地球很危险快回火星'];
 const getMsg = () => {
     return msg[Math.floor(Math.random() * msg.length)];
 }

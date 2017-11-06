@@ -115,7 +115,7 @@ function selectFileImage(fileObj,callback) {
                 var base64 = null;
                 //修复ios  
                 if (navigator.userAgent.match(/iphone/i)) {
-                    console.log('iphone');
+                    // console.log('iphone');
                     //alert(expectWidth + ',' + expectHeight);  
                     //如果方向角不为1，都需要进行旋转 added by lzk  
                     if (Orientation != "" && Orientation != 1) {

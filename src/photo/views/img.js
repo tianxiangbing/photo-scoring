@@ -12,7 +12,7 @@ const Img = ({ src, onPick }) => {
     }
 }
 const computerImg = (e) => {
-    console.log(e)
+    // console.log(e)
     let img = e.target;
     let expectWidth = 100;
     let expectHeight = 100;
