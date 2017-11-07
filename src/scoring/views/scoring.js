@@ -7,50 +7,51 @@ import html2canvas from 'html2canvas';
 class Scoring extends Component {
     constructor(props) {
         super(props);
-        this.state = { img: null };
-        this.score = '';
+        this.state = { img: null, isshoting: true };
+        this.score = 0;
         this.onClick = this.onClick.bind(this);
     }
     onClick() {
-        let _this = this;
-        setTimeout(function () {
-            let canvas = document.createElement('canvas');
-            let ctx = canvas.getContext('2d');
-            canvas.width = document.body.clientWidth * 2;
-            canvas.height = document.body.clientHeight * 2;
-            ctx.scale(2, 2);
-            html2canvas(document.getElementById('root'), {
-                onrendered: (canvas) => {
-                    canvas.globalCompositeOperation = 'source-atop';
-                    let url = canvas.toDataURL("image/png");
-                    _this.setState({ img: url });
-                },
-                background: "rgba(254, 254, 254, 0.50)",
-                canvas: canvas
-            });
-        }, 1000)
+        let canvas = document.createElement('canvas');
+        let ctx = canvas.getContext('2d');
+        canvas.width = document.body.clientWidth * 2;
+        canvas.height = document.body.clientHeight * 2;
+        ctx.scale(2, 2);
+        this.setState({ isshoting: true });
+        html2canvas(document.getElementById('root'), {
+            onrendered: (canvas) => {
+                canvas.globalCompositeOperation = 'source-atop';
+                let url = canvas.toDataURL("image/png");
+                this.setState({ img: url, isshoting: false });
+            },
+            background: "rgba(254, 254, 254, 0.50)",
+            canvas: canvas
+        });
     }
     componentWillReceiveProps(nextprops) {
         if (nextprops && nextprops.clearShot === true && this.state.img) {
-            this.setState({ img: null })
+            this.setState({ img: null });
         }
     }
     componentDidUpdate(nextprops) {
-        !this.state.img && this.onClick();
+        if (this.props.score !== this.score) {
+            this.onClick();
+            this.score = this.props.score;
+        }
     }
     render() {
         let m = getMsg();
         let { score } = this.props;
         return (
             <div>
-                {this.state.img ? <img className="downImg" src={this.state.img} alt="长按下载" /> : undefined}
+                {/* {this.state.img ? <img className="downImg" src={this.state.img} alt="长按保存" /> : undefined} */}
                 <div className="scoreContent">
-                    {score&& !this.state.img ?
+                    {score ?
                         <div className="desc">
                             <div>你的容颜在全球所有人和动物中排名</div>
                             <div className="score">{score}名</div>
                             <div>{m}!</div>
-                            <div className="tips">长按保存图片或截图分享</div>
+                            {!this.state.isshoting ? <a className="tips" href={this.state.img} download="测试颜值">点此下载页面截图</a> : undefined}
                         </div>
                         : undefined
                     }

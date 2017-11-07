@@ -27,9 +27,10 @@
 .tips{
     position: fixed;
     opacity: .7;
-    background-color: #cac5c5;
-    color:#999;
+    background-color: red;
+    color:#fefefe;
     margin-top:5px;
+    text-decoration:none;
     border-radius: 20px;
     padding:6px;
     left:50%;
