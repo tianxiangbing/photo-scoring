@@ -35,7 +35,9 @@ class Scoring extends Component {
     }
     componentDidUpdate(nextprops) {
         if (this.props.score !== this.score) {
-            this.onClick();
+            setTimeout(()=>{
+                this.onClick();
+            },500)
             this.score = this.props.score;
         }
     }
@@ -44,14 +46,14 @@ class Scoring extends Component {
         let { score } = this.props;
         return (
             <div>
-                {/* {this.state.img ? <img className="downImg" src={this.state.img} alt="长按保存" /> : undefined} */}
+                {this.state.img ? <img className="downImg" src={this.state.img} alt="长按保存" /> : undefined}
                 <div className="scoreContent">
-                    {score ?
+                    {score && !this.state.img ?
                         <div className="desc">
                             <div>你的容颜在全球所有人和动物中排名</div>
                             <div className="score">{score}名</div>
                             <div>{m}!</div>
-                            {!this.state.isshoting ? <a className="tips" href={this.state.img} download="测试颜值">点此下载页面截图</a> : undefined}
+                            <a className="tips" href={this.state.img} download="测试颜值">长按保存截图</a>
                         </div>
                         : undefined
                     }
