@@ -75,13 +75,14 @@ const mapStateToProps = (state) => {
     if (base64) {
         let score = '';
         let md5value = md5(base64);
-        let sublen = parseInt(md5value.substr(0, 1), 16);
-        sublen = Math.max(1, Math.min(8, sublen));
-        md5value = md5value.substr(0, sublen);
+        // let sublen = parseInt(md5value.substr(0, 1), 16);
+        // sublen = Math.max(1, Math.min(9, sublen));
+        // md5value = md5value.substr(0, sublen);
         // score = parseInt(md5value, 16) + 1;
         score = sum(md5value);
         return {
-            score: toThousands(score),
+            // score: toThousands(score),
+            score: score,
             clearShot: state.scoreborad.clearShot
         }
     } else {
@@ -94,7 +95,10 @@ const mapStateToProps = (state) => {
 const sum = (str) => {
     let s = 0;
     for (let i = str.length - 1; i >= 0; i--) {
-        s += Number(str[i]);
+        s += parseInt(str[i],16);
+    }
+    if(s>100){
+        s = s.toString().slice(1,3);
     }
     return s;
 }
