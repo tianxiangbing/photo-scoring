@@ -35,9 +35,9 @@ class Scoring extends Component {
     }
     componentDidUpdate(nextprops) {
         if (this.props.score !== this.score) {
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.onClick();
-            },500)
+            }, 500)
             this.score = this.props.score;
         }
     }
@@ -50,8 +50,8 @@ class Scoring extends Component {
                 <div className="scoreContent">
                     {score && !this.state.img ?
                         <div className="desc">
-                            <div>你的容颜在全球所有人和动物中排名</div>
-                            <div className="score">{score}名</div>
+                            <div>你的颜值评分为</div>
+                            <div className="score">{score} 分</div>
                             <div>{m}!</div>
                             <a className="tips" href={this.state.img} download="测试颜值">长按保存截图</a>
                         </div>
@@ -65,7 +65,7 @@ class Scoring extends Component {
         )
     }
 }
-const msg = ['或许靠能力也是一种选择，不要放弃你', '你以为躲起来就找不到你了吗？没有用的你是那样拉风的人', '那么丑你还是别出来见人了', '高颜值才是硬道理', '把你丢在猪群里 都找不到你了', '本来可以靠实力，非要靠颜值', '地球很危险快回火星'];
+const msg = ['或许靠能力也是一种选择，不要放弃你', '你以为躲起来就找不到你了吗？没有用的你是那样拉风的人', '英俊这个词简直是为你而创造的', '高颜值才是硬道理', '本来可以靠实力，非要靠颜值', '地球很危险快回火星'];
 const getMsg = () => {
     return msg[Math.floor(Math.random() * msg.length)];
 }
@@ -78,7 +78,8 @@ const mapStateToProps = (state) => {
         let sublen = parseInt(md5value.substr(0, 1), 16);
         sublen = Math.max(1, Math.min(8, sublen));
         md5value = md5value.substr(0, sublen);
-        score = parseInt(md5value, 16) + 1;
+        // score = parseInt(md5value, 16) + 1;
+        score = sum(md5value);
         return {
             score: toThousands(score),
             clearShot: state.scoreborad.clearShot
@@ -89,6 +90,13 @@ const mapStateToProps = (state) => {
             clearShot: state.scoreborad.clearShot
         }
     }
+}
+const sum = (str) => {
+    let s = 0;
+    for (let i = str.length - 1; i >= 0; i--) {
+        s += Number(str[i]);
+    }
+    return s;
 }
 const toThousands = (num) => {
     num = (num || 0).toString();
